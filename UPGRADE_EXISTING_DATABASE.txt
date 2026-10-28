@@ -1,0 +1,48 @@
+MMS HOSTEL — SAFE ADDITIVE UPGRADE
+
+Recommended approach: keep your existing database. Do NOT import database/mms_hostel.sql into it, because that starter schema intentionally drops/recreates project tables.
+
+1. BACK UP FIRST
+   In phpMyAdmin, select your existing database (usually mms_hostel) > Export > Quick > SQL > Go.
+
+2. UPDATE FILES
+   Extract the upgrade ZIP. Copy the contents of its MMS_Hostel folder into your existing C:\xampp\htdocs\MMS_Hostel folder and allow the new application files to replace old application files. Do not delete your database.
+
+3. CHECK DATABASE CONFIG
+   Open config/config.php and confirm DB_NAME is the name of your existing database. Defaults to mms_hostel.
+
+4. RUN THE ONE-TIME MIGRATION
+   Start Apache and MySQL in XAMPP, then visit:
+   http://localhost/MMS_Hostel/database/upgrade_existing_database.php
+   It adds missing role fields, creates the payment ledger only if it does not exist, and adds a demo staff account only if that email is not already present. It does not drop tables or overwrite existing staff credentials.
+
+5. DELETE THE MIGRATION SCRIPT
+   After the page prints SUCCESS, delete:
+   C:\xampp\htdocs\MMS_Hostel\database\upgrade_existing_database.php
+   This is a one-time setup script and should not remain web-accessible.
+
+6. TEST
+   Website:       http://localhost/MMS_Hostel/
+   Admin login:   http://localhost/MMS_Hostel/admin/login.php
+   Staff login:   http://localhost/MMS_Hostel/staff/login.php
+Staff rooms:   http://localhost/MMS_Hostel/staff/rooms.php
+   Admin bookings:http://localhost/MMS_Hostel/admin/reservations.php
+   Payments:      http://localhost/MMS_Hostel/admin/payments.php
+   Reports:       http://localhost/MMS_Hostel/admin/reports.php
+
+DEMO STAFF LOGIN (created only if absent)
+Email: staff@mmshostel.local
+Password: StaffStart123!
+
+If this account already exists, its password is not reset. Use your existing staff credentials or create a new account from the admin dashboard.
+
+The full fresh-install SQL file database/mms_hostel.sql is included for reference/new installations only. Do NOT import it over a database with bookings you want to preserve.
+
+
+EMAIL + DOWN PAYMENT SETUP
+- The migration extends booking payment/status fields and preserves existing booking/room rows.
+- Configure SMTP credentials and your actual GCash/bank receiving details in config/config.php.
+- Default deposit is 30% (DOWN_PAYMENT_PERCENT). Change it if needed.
+- Staff should record a payment only after it has actually been received and checked. When verified payments reach the deposit amount, the reservation is marked confirmed and the system attempts to email the customer.
+- Gmail requires a Google App Password with 2-Step Verification enabled. Never use or share your normal Gmail password.
+- Online payment remains DEMO ONLY; a real provider and webhook integration are required for actual online collections.

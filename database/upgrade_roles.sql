@@ -1,0 +1,5 @@
+-- IMPORTANT: For an existing database, do not use this file.
+-- Run the idempotent PHP migration instead:
+-- http://localhost/MMS_Hostel/database/upgrade_existing_database.php
+-- See ../UPGRADE_EXISTING_DATABASE.txt
+-- This file intentionally contains no destructive SQL.
