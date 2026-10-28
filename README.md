@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MMS Hostel — Luxury Hostel Booking Website
 
 A responsive PHP + MySQL hotel/hostel booking starter project for local development with XAMPP.
@@ -98,3 +99,6 @@ This is a functional starter, not a production-certified booking platform. Befor
 7. If the email does not arrive, check spam/junk and the PHP/Apache error log; verify SMTP credentials and outbound connection.
 
 **Payment safety:** Cash, GCash, and bank transfer are manually verified by staff; this project does not automatically verify transactions with GCash or a bank. The `online_demo` option is only a simulation and does not collect money. To accept real online payments, integrate an actual gateway such as PayMongo or Xendit with server-side webhook verification.
+=======
+# MMS_HOSTEL-
+>>>>>>> origin/main
